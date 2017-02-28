@@ -1,0 +1,5 @@
+rootProject.name = 'fayzel'
+
+include 'core'
+findProject(':core')?.name = 'fayzel-core'
+

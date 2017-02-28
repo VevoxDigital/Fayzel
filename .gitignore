@@ -1,0 +1,12 @@
+# DE Files
+*gradle/
+.idea/
+
+# Temporary files and directories
+tmp/
+
+# Build Binaries
+gradlew*
+
+# Output files and directories
+build/

@@ -1,0 +1,16 @@
+group 'io.vevox.mc'
+version '0.1.0'
+
+apply plugin: 'java'
+
+//noinspection GroovyUnusedAssignment
+sourceCompatibility = 1.8
+
+repositories {
+  mavenCentral()
+}
+
+processResources {
+  inputs.property 'modId', project.rootProject.archivesBaseName
+  inputs.property 'version', project.version
+}

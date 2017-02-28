@@ -1,0 +1,64 @@
+/**
+ * Fayzel mods for Minecraft
+ * 
+ * @author Matthew Struble
+ */
+
+buildscript {
+  repositories {
+    jcenter()
+    mavenCentral()
+    maven { url = "http://files.minecraftforge.net/maven" }
+  }
+
+  dependencies {
+    classpath 'net.minecraftforge.gradle:ForgeGradle:2.2-SNAPSHOT'
+  }
+}
+
+allprojects {
+
+  // FML
+  apply plugin: 'net.minecraftforge.gradle.forge'
+  apply plugin: 'java'
+
+  group 'io.vevox.mc'
+  version '0.1.0'
+  archivesBaseName = 'fayzel'
+
+  //noinspection GroovyUnusedAssignment
+  sourceCompatibility = targetCompatibility = 1.8
+
+  minecraft {
+    version = "1.11.2-13.20.0.2228"
+    runDir = "run"
+
+    mappings = "snapshot_20161220"
+    // makeObfSourceJar = false
+  }
+
+  dependencies { }
+
+  processResources {
+    inputs.property 'version', project.version
+    inputs.property 'mcversion', project.minecraft.version
+    inputs.property 'modid', project.archivesBaseName
+
+    // expand content in 'mcmod.info'
+    from(sourceSets.main.resources.srcDirs) {
+      include 'mcmod.info'
+
+      expand 'version':project.version,
+          'mcversion':project.minecraft.version,
+          'modid':project.archivesBaseName
+    }
+
+    // anything else, just copy it
+    from(sourceSets.main.resources.srcDirs) {
+      exclude 'mcmod.info'
+    }
+  }
+
+}
+
+
