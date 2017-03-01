@@ -11,6 +11,6 @@ repositories {
 }
 
 processResources {
-  inputs.property 'modId', project.rootProject.archivesBaseName
+  inputs.property 'modId', project.archivesBaseName
   inputs.property 'version', project.version
 }

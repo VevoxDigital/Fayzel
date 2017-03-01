@@ -1,0 +1,11 @@
+### ============== INTERFACE
+## Creative Tabs
+itemGroup.fayzel.core=Fayzel
+
+
+### ============== ITEMS
+## ----- INGOTS
+# Copper Ingot
+item.ingot_copper.name=Copper Ingot
+item.ingot_copper.ttip=Soft and flexible conductor.
+item.ingot_copper.desc=Malleable and easily melted down.\nShiny orange in appearance.

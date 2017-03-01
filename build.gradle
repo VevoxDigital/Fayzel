@@ -24,7 +24,7 @@ allprojects {
 
   group 'io.vevox.mc'
   version '0.1.0'
-  archivesBaseName = 'fayzel'
+  archivesBaseName = project.name
 
   //noinspection GroovyUnusedAssignment
   sourceCompatibility = targetCompatibility = 1.8
@@ -39,10 +39,17 @@ allprojects {
 
   dependencies { }
 
+  ext {
+    modName = 'Fayzel'
+    modDesc = '\\u00a7e\\"Magic is just science yet to be understood.\\"'
+  }
+
   processResources {
     inputs.property 'version', project.version
     inputs.property 'mcversion', project.minecraft.version
     inputs.property 'modid', project.archivesBaseName
+    inputs.property 'name', modName
+    inputs.property 'desc', modDesc
 
     // expand content in 'mcmod.info'
     from(sourceSets.main.resources.srcDirs) {
@@ -50,7 +57,9 @@ allprojects {
 
       expand 'version':project.version,
           'mcversion':project.minecraft.version,
-          'modid':project.archivesBaseName
+          'modid':project.archivesBaseName,
+          'name':project.modName,
+          'desc':project.modDesc
     }
 
     // anything else, just copy it
