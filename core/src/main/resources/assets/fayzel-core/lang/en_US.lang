@@ -3,6 +3,14 @@
 itemGroup.fayzel.core=Fayzel
 
 
+### ============== BLOCKS
+## ----- ORE
+# Copper Ore
+tile.ore_copper.name=Copper Ore
+tile.ore_copper.ttip=Semi-pure copper ore.
+tile.ore_copper.desc=Common occurrence anywhere iron is found.\nSimilar in rarity and abundance.
+
+
 ### ============== ITEMS
 ## ----- INGOTS
 # Copper Ingot

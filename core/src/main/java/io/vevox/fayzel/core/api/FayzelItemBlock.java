@@ -1,9 +1,9 @@
 package io.vevox.fayzel.core.api;
 
+import net.minecraft.block.Block;
 import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.item.Item;
+import net.minecraft.item.ItemBlock;
 import net.minecraft.item.ItemStack;
-import net.minecraft.util.ResourceLocation;
 
 import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
@@ -12,28 +12,24 @@ import java.util.List;
 /**
  * @author Matthew Struble
  */
-public abstract class FayzelItemImpl extends Item implements IFayzelItem {
+public class FayzelItemBlock extends ItemBlock implements IFayzelItem {
 
-  private final String modExt;
+  public FayzelItemBlock(IFayzelBlock block) {
+    super((Block) block);
+    if (block.metaMax() > 0) setHasSubtypes(true);
 
-  public FayzelItemImpl(ResourceLocation key, String modExt) {
-    this.modExt = modExt;
-    setRegistryName(key);
-    setUnlocalizedName(key.getResourcePath());
+    //noinspection ConstantConditions
+    setRegistryName(block.getRegistryName());
   }
 
   @Override
   public String name() {
-    return getUnlocalizedName();
+    return block.getUnlocalizedName();
   }
 
   @Override
   public String modExt() {
-    return modExt;
-  }
-
-  protected void useExtTab() {
-    setCreativeTab(tab());
+    return block instanceof IFayzelBlock ? ((IFayzelBlock) block).modExt() : "core";
   }
 
   @Override
@@ -46,11 +42,10 @@ public abstract class FayzelItemImpl extends Item implements IFayzelItem {
   @Override
   @Nonnull
   public String getUnlocalizedName(ItemStack stack) {
-    return metaMap().containsKey(stack.getMetadata())
-        ? "item." + metaMap().get(stack.getMetadata())
+    if (!(block instanceof IFayzelBlock)) return block.getUnlocalizedName();
+    IFayzelBlock block = (IFayzelBlock) getBlock();
+    return block.metaMap().containsKey(stack.getMetadata())
+        ? "tile."+block.metaMap().get(stack.getMetadata())
         : super.getUnlocalizedName(stack);
   }
-
-
-
 }

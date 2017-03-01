@@ -1,7 +1,9 @@
 package io.vevox.fayzel.core.proxy;
 
 import io.vevox.fayzel.core.FayzelCore;
+import io.vevox.fayzel.core.api.FayzelBlockImpl;
 import io.vevox.fayzel.core.api.FayzelItemImpl;
+import io.vevox.fayzel.core.api.IFayzelBlock;
 import io.vevox.fayzel.core.api.IFayzelObject;
 import net.minecraft.item.ItemStack;
 import net.minecraftforge.fml.common.event.FMLInitializationEvent;
@@ -38,7 +40,10 @@ public class CommonProxy {
         IFayzelObject object = (IFayzelObject) entry.getValue();
         ItemStack is = null;
 
+        if (object instanceof IFayzelBlock) GameRegistry.register(((IFayzelBlock) object).itemBlock());
+
         if (object instanceof FayzelItemImpl) is = new ItemStack((FayzelItemImpl) object);
+        else if (object instanceof FayzelBlockImpl) is = new ItemStack((FayzelBlockImpl) object);
 
         if (object.oreDictName() != null && is != null) OreDictionary.registerOre(object.oreDictName(), is);
       }

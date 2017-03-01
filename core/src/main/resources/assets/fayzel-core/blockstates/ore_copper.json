@@ -1,0 +1,6 @@
+{
+  "variants": {
+    "normal": {"model": "fayzel-core:ore/ore_copper"},
+    "inventory": {"model": "fayzel-core:ore/ore_copper"}
+  }
+}
