@@ -1,5 +1,6 @@
 package io.vevox.fayzel.core;
 
+import io.vevox.fayzel.core.gen.GenFayzelOre;
 import io.vevox.fayzel.core.proxy.CommonProxy;
 import io.vevox.fayzel.core.register.RegisterObjects;
 import io.vevox.fayzel.core.register.RegisterTabs;
@@ -34,6 +35,8 @@ public class FayzelCore {
   private static RegisterTabs tabs;
   private static RegisterObjects objects;
 
+  private static GenFayzelOre ores;
+
   private Logger logger;
 
   {
@@ -46,6 +49,8 @@ public class FayzelCore {
 
     tabs = new RegisterTabs();
     objects = new RegisterObjects();
+
+    ores = new GenFayzelOre();
 
     proxy.preInit(e);
   }
@@ -74,6 +79,10 @@ public class FayzelCore {
 
   public static RegisterObjects objects() {
     return objects;
+  }
+
+  public static GenFayzelOre ores() {
+    return ores;
   }
 
 }

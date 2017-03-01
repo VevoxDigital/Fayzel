@@ -1,16 +1,16 @@
 package io.vevox.fayzel.core.api;
 
+import io.vevox.fayzel.core.FayzelCore;
 import net.minecraft.block.Block;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.init.Blocks;
 
-import javax.annotation.Nullable;
 import java.util.function.Predicate;
 
 /**
  * @author Matthew Struble
  */
-public interface IBlockOre {
+public interface IBlockOre extends IFayzelBlock {
 
   /**
    * Number of tries to place this ore in the chunk.
@@ -57,9 +57,8 @@ public interface IBlockOre {
    *
    * @return The block state.
    */
-  @Nullable
   default IBlockState genState() {
-    return null;
+    return ((Block) FayzelCore.objects().get(getRegistryName())).getDefaultState();
   }
 
   /**
@@ -68,7 +67,6 @@ public interface IBlockOre {
    *
    * @return The generator predicate.
    */
-  @Nullable
   default Predicate<IBlockState> genPredicate() {
     return s -> s.getBlock().getUnlocalizedName().equals(Blocks.STONE.getUnlocalizedName());
   }

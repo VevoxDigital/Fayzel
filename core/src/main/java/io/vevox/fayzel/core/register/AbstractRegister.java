@@ -21,7 +21,7 @@ public abstract class AbstractRegister<K, V> {
    *
    * @param value The value.
    */
-  void register(V value) {
+  public void register(V value) {
     register.put(keyMap().apply(value), value);
   }
 

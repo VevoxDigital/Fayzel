@@ -32,6 +32,9 @@ public class CommonProxy {
   public void init(FMLInitializationEvent e) {
     logger.info("!! Common Init start  !!");
 
+    logger.info("Registering generators...");
+    GameRegistry.registerWorldGenerator(FayzelCore.ores(), 5);
+
     logger.info("Registering objects...");
     FayzelCore.objects().entrySet().forEach(entry -> {
       GameRegistry.register(entry.getValue());
