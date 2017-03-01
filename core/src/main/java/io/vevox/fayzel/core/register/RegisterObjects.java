@@ -16,8 +16,8 @@ public class RegisterObjects extends AbstractRegister<ResourceLocation, IForgeRe
   public final RegistrarBlocks blocks;
 
   public RegisterObjects() {
-    items = new RegistrarItems();
     blocks = new RegistrarBlocks();
+    items = new RegistrarItems();
 
     register(items);
     register(blocks);

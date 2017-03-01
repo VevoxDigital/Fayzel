@@ -47,10 +47,10 @@ public class FayzelCore {
   public void preInit(FMLPreInitializationEvent e) {
     logger = LogManager.getLogger(e.getModMetadata().name);
 
+    ores = new GenFayzelOre();
+
     tabs = new RegisterTabs();
     objects = new RegisterObjects();
-
-    ores = new GenFayzelOre();
 
     proxy.preInit(e);
   }
