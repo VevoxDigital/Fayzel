@@ -8,42 +8,46 @@ import net.minecraft.block.material.Material;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.fml.common.registry.GameRegistry;
+import net.minecraftforge.oredict.OreDictionary;
 
 /**
  * @author Matthew Struble
  */
-public class BlockOreCopper extends FayzelBlockImpl implements IBlockOre {
+public class BlockOreAluminum extends FayzelBlockImpl implements IBlockOre {
 
-  public BlockOreCopper() {
-    super(new ResourceLocation(FayzelCore.MOD_ID, "ore_copper"),
+
+  public BlockOreAluminum() {
+    super(new ResourceLocation(FayzelCore.MOD_ID, "ore_aluminum"),
         Material.ROCK, MapColor.STONE, "core");
-    setHardness(2f).setResistance(10f).setHarvestLevel("pickaxe", 1);
+    setHardness(3f).setResistance(10f).setHarvestLevel("pickaxe", 1);
     useExtTab();
   }
 
   @Override
   public String oreDictName() {
-    return "oreCopper";
+    return "oreAluminum";
   }
-
 
   @Override
   public int tries() {
-    return 20;
+    return 8;
   }
 
   @Override
   public int heightMax() {
-    return 64;
+    return 32;
   }
 
   @Override
   public int size() {
-    return 9;
+    return 8;
   }
 
   @Override
   public void postRegister() {
-    GameRegistry.addSmelting(this, new ItemStack(FayzelCore.objects().items.ingotCopper), 0.7f);
+    // add alternate spelling to OreDict
+    OreDictionary.registerOre("oreAluminium", this);
+
+    GameRegistry.addSmelting(this, new ItemStack(FayzelCore.objects().items.ingotAluminum), 1);
   }
 }

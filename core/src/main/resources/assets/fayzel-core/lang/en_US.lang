@@ -5,15 +5,35 @@ itemGroup.fayzel.core=Fayzel
 
 ### ============== BLOCKS
 ## ----- ORE
+# Alumnium Ore
+tile.ore_aluminum.name=Aluminum Ore
+tile.ore_aluminum.ttip=Semi-pure aluminum ore.
+tile.ore_aluminum.desc=Uncommon find deeper in the ground.
+
 # Copper Ore
 tile.ore_copper.name=Copper Ore
 tile.ore_copper.ttip=Semi-pure copper ore.
-tile.ore_copper.desc=Common occurrence anywhere iron is found.\nSimilar in rarity and abundance.
+tile.ore_copper.desc=Common occurrence anywhere iron is found.\nSimilar in formation and abundance.
+
+# Tin Ore
+tile.ore_tin.name=Tin Ore
+tile.ore_tin.ttip=Semi-pure tin core.
+tile.ore_tin.desc=Similarly common to iron, but deeper in the ground.
 
 
 ### ============== ITEMS
 ## ----- INGOTS
+# Aluminum Ingot
+item.ingot_aluminum.name=Aluminum Ingot
+item.ingot_aluminum.ttip=Strong and durable metal.
+item.ingot_aluminum.desc=If properly forged, this material is incredibly strong and far lighter than iron.\nDull blue-gray in appearance.
+
 # Copper Ingot
 item.ingot_copper.name=Copper Ingot
 item.ingot_copper.ttip=Soft and flexible conductor.
 item.ingot_copper.desc=Malleable and easily melted down.\nShiny orange in appearance.
+
+# Tin Ingot
+item.ingot_tin.name=Tin Ingot
+item.ingot_tin.ttip=Lightweight, soft, and conductive.
+item.ingot_tin.desc=Not very stong, but its flexibility may prove useful.\nDull gray in appearance.

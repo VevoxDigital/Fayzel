@@ -1,0 +1,6 @@
+{
+  "parent": "block/cube_all",
+  "textures": {
+    "all": "fayzel-core:block/ore/ore_aluminum"
+  }
+}

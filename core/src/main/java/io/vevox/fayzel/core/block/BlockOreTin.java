@@ -12,10 +12,10 @@ import net.minecraftforge.fml.common.registry.GameRegistry;
 /**
  * @author Matthew Struble
  */
-public class BlockOreCopper extends FayzelBlockImpl implements IBlockOre {
+public class BlockOreTin extends FayzelBlockImpl implements IBlockOre {
 
-  public BlockOreCopper() {
-    super(new ResourceLocation(FayzelCore.MOD_ID, "ore_copper"),
+  public BlockOreTin() {
+    super(new ResourceLocation(FayzelCore.MOD_ID, "ore_tin"),
         Material.ROCK, MapColor.STONE, "core");
     setHardness(2f).setResistance(10f).setHarvestLevel("pickaxe", 1);
     useExtTab();
@@ -23,9 +23,8 @@ public class BlockOreCopper extends FayzelBlockImpl implements IBlockOre {
 
   @Override
   public String oreDictName() {
-    return "oreCopper";
+    return "oreTin";
   }
-
 
   @Override
   public int tries() {
@@ -34,16 +33,17 @@ public class BlockOreCopper extends FayzelBlockImpl implements IBlockOre {
 
   @Override
   public int heightMax() {
-    return 64;
+    return 32;
   }
 
   @Override
   public int size() {
-    return 9;
+    return 8;
   }
 
   @Override
   public void postRegister() {
-    GameRegistry.addSmelting(this, new ItemStack(FayzelCore.objects().items.ingotCopper), 0.7f);
+    GameRegistry.addSmelting(this, new ItemStack(FayzelCore.objects().items.ingotTin), 0.8f);
   }
+
 }
