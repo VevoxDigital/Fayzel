@@ -5,9 +5,13 @@ import net.minecraft.block.Block;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.init.Blocks;
 
+import javax.annotation.Nonnull;
 import java.util.function.Predicate;
 
 /**
+ * An interface for any block that can generate as an ore and should
+ * be registered to the ore generator.
+ *
  * @author Matthew Struble
  */
 public interface IBlockOre extends IFayzelBlock {
@@ -47,6 +51,7 @@ public interface IBlockOre extends IFayzelBlock {
    *
    * @return The dimensions predicate
    */
+  @Nonnull
   default Predicate<Integer> genDimension() {
     return d -> d != -1;
   }
@@ -57,6 +62,7 @@ public interface IBlockOre extends IFayzelBlock {
    *
    * @return The block state.
    */
+  @Nonnull
   default IBlockState genState() {
     return ((Block) FayzelCore.objects().get(getRegistryName())).getDefaultState();
   }
@@ -67,6 +73,7 @@ public interface IBlockOre extends IFayzelBlock {
    *
    * @return The generator predicate.
    */
+  @Nonnull
   default Predicate<IBlockState> genPredicate() {
     return s -> s.getBlock().getUnlocalizedName().equals(Blocks.STONE.getUnlocalizedName());
   }

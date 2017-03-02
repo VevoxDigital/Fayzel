@@ -3,17 +3,21 @@ package io.vevox.fayzel.core.api;
 import com.google.common.collect.ImmutableList;
 import io.vevox.fayzel.core.FayzelCore;
 import net.minecraft.client.gui.GuiScreen;
-import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.client.resources.I18n;
+import net.minecraft.creativetab.CreativeTabs;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
+import javax.annotation.Nonnull;
+import javax.annotation.Nullable;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
 /**
+ * A base mod object for all blocks and items belonging to Fayzel.
+ *
  * @author Matthew Struble
  */
 public interface IFayzelObject extends Comparable<IFayzelObject> {
@@ -28,6 +32,7 @@ public interface IFayzelObject extends Comparable<IFayzelObject> {
    *
    * @throws NullPointerException If the given object is null.
    */
+  @Nonnull
   @SideOnly(Side.CLIENT)
   static String localize(IFayzelObject object) throws NullPointerException {
     return I18n.format(object.name());
@@ -40,6 +45,7 @@ public interface IFayzelObject extends Comparable<IFayzelObject> {
    *
    * @return The information list.
    */
+  @Nonnull
   @SideOnly(Side.CLIENT)
   static List<String> getInformation(String unlocalizedName) {
     List<String> info = new ArrayList<>();
@@ -52,8 +58,7 @@ public interface IFayzelObject extends Comparable<IFayzelObject> {
     return info;
   }
 
-  @SuppressWarnings("NullableProblems") // Thanks IntelliJ
-  default int compareTo(IFayzelObject object) {
+  default int compareTo(@Nonnull IFayzelObject object) {
     return name().compareTo(object.name());
   }
 
@@ -62,6 +67,7 @@ public interface IFayzelObject extends Comparable<IFayzelObject> {
    *
    * @return The unlocalized name.
    */
+  @Nonnull
   String name();
 
   /**
@@ -69,6 +75,7 @@ public interface IFayzelObject extends Comparable<IFayzelObject> {
    *
    * @return The localized name.
    */
+  @Nonnull
   @SideOnly(Side.CLIENT)
   default String displayName() {
     return localize(this);
@@ -79,6 +86,7 @@ public interface IFayzelObject extends Comparable<IFayzelObject> {
    *
    * @return The mod extension.
    */
+  @Nonnull
   String modExt();
 
   /**
@@ -86,6 +94,7 @@ public interface IFayzelObject extends Comparable<IFayzelObject> {
    *
    * @return The ore dictionary name.
    */
+  @Nullable
   default String oreDictName() {
     return null;
   }
@@ -95,6 +104,7 @@ public interface IFayzelObject extends Comparable<IFayzelObject> {
    *
    * @return The creative tab.
    */
+  @Nonnull
   default CreativeTabs tab() {
     return FayzelCore.tabs().get(modExt());
   }
@@ -114,6 +124,7 @@ public interface IFayzelObject extends Comparable<IFayzelObject> {
    *
    * @return The map.
    */
+  @Nonnull
   default Map<Integer, String> metaMap() {
     Map<Integer, String> map = new HashMap<>();
     map.put(0, name().substring(5));
@@ -123,6 +134,7 @@ public interface IFayzelObject extends Comparable<IFayzelObject> {
   /**
    * Called when all game objects have been registered to their respective register.
    */
-  default void postRegister() { }
+  default void postRegister() {
+  }
 
 }
