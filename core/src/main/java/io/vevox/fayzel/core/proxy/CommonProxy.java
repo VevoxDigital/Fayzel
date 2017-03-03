@@ -1,11 +1,10 @@
 package io.vevox.fayzel.core.proxy;
 
 import io.vevox.fayzel.core.FayzelCore;
-import io.vevox.fayzel.core.api.FayzelBlockImpl;
-import io.vevox.fayzel.core.api.FayzelItemImpl;
-import io.vevox.fayzel.core.api.IFayzelBlock;
-import io.vevox.fayzel.core.api.IFayzelObject;
+import io.vevox.fayzel.core.api.*;
+import net.minecraft.block.Block;
 import net.minecraft.item.ItemStack;
+import net.minecraftforge.client.model.ModelLoader;
 import net.minecraftforge.fml.common.event.FMLInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLPostInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
@@ -43,12 +42,25 @@ public class CommonProxy {
         IFayzelObject object = (IFayzelObject) entry.getValue();
         ItemStack is = null;
 
-        if (object instanceof IFayzelBlock) GameRegistry.register(((IFayzelBlock) object).itemBlock());
-
+        // register the actual object
         if (object instanceof FayzelItemImpl) is = new ItemStack((FayzelItemImpl) object);
-        else if (object instanceof FayzelBlockImpl) is = new ItemStack((FayzelBlockImpl) object);
+        else if (object instanceof FayzelBlockImpl) {
+          is = new ItemStack((FayzelBlockImpl) object);
 
+          // register ItemBlock (given that this must be a block)
+          GameRegistry.register(((IFayzelBlock) object).itemBlock());
+        }
+
+        // register any tile entities
+        if (object instanceof IFayzelTileEntityProvider)
+          GameRegistry.registerTileEntity(((IFayzelTileEntityProvider) object).tileClass(), object.name());
+
+        // register any ore dictionary values
         if (object.oreDictName() != null && is != null) OreDictionary.registerOre(object.oreDictName(), is);
+
+        // register custom state map
+        if (object instanceof IFayzelStateMapProvider && object instanceof Block)
+          ModelLoader.setCustomStateMapper((Block) object, ((IFayzelStateMapProvider) object).mapper());
       }
     });
 
