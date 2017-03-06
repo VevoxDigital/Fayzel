@@ -1,0 +1,18 @@
+{
+  "variants": {
+    "facing=north,part=center": { "model": "fayzel-core:worktable/center" },
+    "facing=south,part=center": { "model": "fayzel-core:worktable/center", "y": 180 },
+    "facing=east,part=center": { "model": "fayzel-core:worktable/center", "y": 90 },
+    "facing=west,part=center": { "model": "fayzel-core:worktable/center", "y": 270 },
+
+    "facing=north,part=left": { "model": "fayzel-core:worktable/left", "mirror": true },
+    "facing=south,part=left": { "model": "fayzel-core:worktable/left", "y": 180 },
+    "facing=east,part=left": { "model": "fayzel-core:worktable/left", "y": 90 },
+    "facing=west,part=left": { "model": "fayzel-core:worktable/left", "y": 270 },
+
+    "facing=north,part=right": { "model": "fayzel-core:worktable/right" },
+    "facing=south,part=right": { "model": "fayzel-core:worktable/right", "y": 180 },
+    "facing=east,part=right": { "model": "fayzel-core:worktable/right", "y": 90 },
+    "facing=west,part=right": { "model": "fayzel-core:worktable/right", "y": 270 }
+  }
+}

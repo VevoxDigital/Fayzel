@@ -4,6 +4,7 @@ import io.vevox.fayzel.core.api.IFayzelItem;
 import io.vevox.fayzel.core.item.ItemIngotAluminum;
 import io.vevox.fayzel.core.item.ItemIngotCopper;
 import io.vevox.fayzel.core.item.ItemIngotTin;
+import io.vevox.fayzel.core.item.ItemWorktable;
 
 import java.util.HashSet;
 import java.util.Set;
@@ -18,10 +19,14 @@ public class RegistrarItems implements IRegistrar<IFayzelItem> {
   public final ItemIngotAluminum ingotAluminum;
   public final ItemIngotTin ingotTin;
 
+  public final ItemWorktable worktable;
+
   {
     ingotCopper = new ItemIngotCopper();
     ingotAluminum = new ItemIngotAluminum();
     ingotTin = new ItemIngotTin();
+
+    worktable = new ItemWorktable();
   }
 
   @Override
@@ -31,6 +36,8 @@ public class RegistrarItems implements IRegistrar<IFayzelItem> {
     items.add(ingotCopper);
     items.add(ingotAluminum);
     items.add(ingotTin);
+
+    items.add(worktable);
 
     return items;
   }

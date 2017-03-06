@@ -5,6 +5,7 @@ import io.vevox.fayzel.core.api.IFayzelBlock;
 import io.vevox.fayzel.core.block.BlockOreAluminum;
 import io.vevox.fayzel.core.block.BlockOreCopper;
 import io.vevox.fayzel.core.block.BlockOreTin;
+import io.vevox.fayzel.core.block.BlockWorktable;
 
 import java.util.HashSet;
 import java.util.Set;
@@ -19,6 +20,8 @@ public class RegistrarBlocks implements IRegistrar<IFayzelBlock> {
   public final BlockOreAluminum oreAluminum;
   public final BlockOreTin oreTin;
 
+  public final BlockWorktable worktable;
+
   {
     oreCopper = new BlockOreCopper();
     FayzelCore.ores().register(oreCopper);
@@ -28,6 +31,8 @@ public class RegistrarBlocks implements IRegistrar<IFayzelBlock> {
 
     oreTin = new BlockOreTin();
     FayzelCore.ores().register(oreTin);
+
+    worktable = new BlockWorktable();
   }
 
   @Override
@@ -37,6 +42,8 @@ public class RegistrarBlocks implements IRegistrar<IFayzelBlock> {
     r.add(oreCopper);
     r.add(oreAluminum);
     r.add(oreTin);
+
+    r.add(worktable);
 
     return r;
   }
