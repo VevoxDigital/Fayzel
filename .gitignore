@@ -11,3 +11,6 @@ gradlew*
 # Output files and directories
 build/
 run/
+
+# Asset Project Files
+*.bdc3D
