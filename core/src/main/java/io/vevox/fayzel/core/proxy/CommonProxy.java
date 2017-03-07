@@ -56,7 +56,10 @@ public class CommonProxy {
           GameRegistry.registerTileEntity(((IFayzelTileEntityProvider) object).tileClass(), object.name());
 
         // register any ore dictionary values
-        if (object.oreDictName() != null && is != null) OreDictionary.registerOre(object.oreDictName(), is);
+        if (object.oreDictName() != null && is != null) {
+          logger.info(String.format(" * Registering oreDict for %s as '%s'", object.getClass().getSimpleName(), object.oreDictName()));
+          OreDictionary.registerOre(object.oreDictName(), is);
+        }
 
         // register custom state map
         if (object instanceof IFayzelStateMapProvider && object instanceof Block)

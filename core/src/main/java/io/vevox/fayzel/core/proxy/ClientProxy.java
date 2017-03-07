@@ -47,9 +47,10 @@ public class ClientProxy extends CommonProxy {
           String n = o.name().substring(5);
 
           List<ModelResourceLocation> variants = new ArrayList<>();
+
           for (int i = 0; i <= o.metaMax(); i++) {
             String mn = o.metaMap().containsKey(i) ? o.metaMap().get(i) : n;
-            logger.info(" * Registered "+o.getClass().getSimpleName()+":"+i+" from "+mn);
+            logger.info(String.format(" * Registering %s:%d from %s", o.getClass().getSimpleName(), i, mn));
             ModelResourceLocation resourceLocation =
                 new ModelResourceLocation(FayzelCore.MOD_ID + ":" + mn, "inventory");
             variants.add(resourceLocation);
