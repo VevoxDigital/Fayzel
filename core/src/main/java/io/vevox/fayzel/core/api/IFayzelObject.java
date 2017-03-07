@@ -1,7 +1,6 @@
 package io.vevox.fayzel.core.api;
 
 import com.google.common.collect.ImmutableList;
-import io.vevox.fayzel.core.FayzelCore;
 import net.minecraft.client.gui.GuiScreen;
 import net.minecraft.client.resources.I18n;
 import net.minecraft.creativetab.CreativeTabs;
@@ -104,9 +103,9 @@ public interface IFayzelObject extends Comparable<IFayzelObject> {
    *
    * @return The creative tab.
    */
-  @Nonnull
+  @Nullable
   default CreativeTabs tab() {
-    return FayzelCore.tabs().get(modExt());
+    return null;
   }
 
   /**

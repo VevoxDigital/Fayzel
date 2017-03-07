@@ -1,5 +1,7 @@
 package io.vevox.fayzel.core.api;
 
+import io.vevox.fayzel.core.FayzelCore;
+import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
@@ -21,6 +23,8 @@ import java.util.List;
 public abstract class FayzelItemImpl extends Item implements IFayzelItem {
 
   private final String modExt;
+
+  private CreativeTabs tab;
 
   /**
    * Constructs a new {@link FayzelItemImpl}, using the given properties
@@ -50,7 +54,12 @@ public abstract class FayzelItemImpl extends Item implements IFayzelItem {
    * Sets this {@link Item}'s creative tab to the {@link #modExt() mod}'s default creative tab.
    */
   protected void useExtTab() {
-    setCreativeTab(tab());
+    tab = FayzelCore.tabs().get(modExt);
+  }
+
+  @Override
+  public CreativeTabs tab() {
+    return tab;
   }
 
   @Override

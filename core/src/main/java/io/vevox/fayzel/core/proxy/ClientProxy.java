@@ -14,6 +14,7 @@ import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
 import org.apache.logging.log4j.Logger;
 
 import java.util.ArrayList;
+import java.util.Comparator;
 import java.util.List;
 
 /**
@@ -42,15 +43,21 @@ public class ClientProxy extends CommonProxy {
     logger.info("Registering model resources...");
     FayzelCore.objects().entrySet().stream()
         .filter(entry -> entry.getValue() instanceof IFayzelObject)
+        // see note in CommonProxy about sequential-ization
+        .sequential()
+        .sorted(Comparator.comparing(a -> a.getKey().getResourcePath()))
         .forEach(entry -> {
           IFayzelObject o = (IFayzelObject) entry.getValue();
           String n = o.name().substring(5);
 
           List<ModelResourceLocation> variants = new ArrayList<>();
 
+          logger.debug(String.format(" * Registering %s (%s) with %d meta",
+              o.getClass().getSimpleName(), o.modExt(), o.metaMax()));
+
           for (int i = 0; i <= o.metaMax(); i++) {
             String mn = o.metaMap().containsKey(i) ? o.metaMap().get(i) : n;
-            logger.info(String.format(" * Registering %s:%d from %s", o.getClass().getSimpleName(), i, mn));
+            logger.debug(String.format(" >> Using %s:%d from %s", o.getClass().getSimpleName(), i, mn));
             ModelResourceLocation resourceLocation =
                 new ModelResourceLocation(FayzelCore.MOD_ID + ":" + mn, "inventory");
             variants.add(resourceLocation);

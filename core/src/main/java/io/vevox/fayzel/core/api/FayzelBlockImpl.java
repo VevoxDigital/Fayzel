@@ -1,8 +1,10 @@
 package io.vevox.fayzel.core.api;
 
+import io.vevox.fayzel.core.FayzelCore;
 import net.minecraft.block.Block;
 import net.minecraft.block.material.MapColor;
 import net.minecraft.block.material.Material;
+import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.util.ResourceLocation;
 
 import javax.annotation.Nonnull;
@@ -19,6 +21,8 @@ import javax.annotation.Nonnull;
 public abstract class FayzelBlockImpl extends Block implements IFayzelBlock {
 
   private final String modExt;
+
+  private CreativeTabs tab;
 
   /**
    * Constructs a new {@link FayzelBlockImpl}, using the given properties
@@ -49,10 +53,15 @@ public abstract class FayzelBlockImpl extends Block implements IFayzelBlock {
     return modExt;
   }
 
+  @Override
+  public CreativeTabs tab() {
+    return tab;
+  }
+
   /**
    * Sets this {@link Block}'s creative tab to the {@link #modExt() mod}'s default creative tab.
    */
   protected void useExtTab() {
-    setCreativeTab(tab());
+    tab = FayzelCore.tabs().get(modExt);
   }
 }
