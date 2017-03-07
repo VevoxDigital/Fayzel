@@ -4,6 +4,7 @@ import io.vevox.fayzel.core.FayzelCore;
 import io.vevox.fayzel.core.api.FayzelBlockImpl;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockHorizontal;
+import net.minecraft.block.SoundType;
 import net.minecraft.block.material.EnumPushReaction;
 import net.minecraft.block.material.MapColor;
 import net.minecraft.block.material.Material;
@@ -48,6 +49,7 @@ public class BlockWorktable extends FayzelBlockImpl {
     setDefaultState(blockState.getBaseState()
         .withProperty(PROPERTY_PART, TablePart.CENTER)
         .withProperty(BlockHorizontal.FACING, EnumFacing.NORTH));
+    setSoundType(SoundType.WOOD);
   }
 
   @Override
