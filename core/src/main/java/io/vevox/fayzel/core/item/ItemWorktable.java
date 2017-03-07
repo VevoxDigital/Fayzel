@@ -5,13 +5,11 @@ import io.vevox.fayzel.core.api.FayzelItemImpl;
 import io.vevox.fayzel.core.block.BlockWorktable;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockHorizontal;
+import net.minecraft.block.SoundType;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
-import net.minecraft.util.EnumActionResult;
-import net.minecraft.util.EnumFacing;
-import net.minecraft.util.EnumHand;
-import net.minecraft.util.ResourceLocation;
+import net.minecraft.util.*;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 
@@ -69,7 +67,14 @@ public class ItemWorktable extends FayzelItemImpl {
         worldIn.setBlockState(posRight, facingState.withProperty(BlockWorktable.PROPERTY_PART, BlockWorktable.TablePart.RIGHT));
         worldIn.setBlockState(pos, facingState.withProperty(BlockWorktable.PROPERTY_PART, BlockWorktable.TablePart.CENTER));
 
-        // TODO Play sound and notify neighbors
+        worldIn.notifyNeighborsRespectDebug(pos, worktable, false);
+        worldIn.notifyNeighborsRespectDebug(posLeft, worktable, false);
+        worldIn.notifyNeighborsRespectDebug(posRight, worktable, false);
+
+        SoundType sound = state.getBlock().getSoundType(state, worldIn, pos, player);
+        worldIn.playSound(null, pos, sound.getPlaceSound(), SoundCategory.BLOCKS,
+            (sound.getVolume() + 1.0f) / 2.0f, sound.getPitch() * 0.8f);
+
         return EnumActionResult.SUCCESS;
       }
     }

@@ -20,6 +20,11 @@ tile.ore_tin.name=Tin Ore
 tile.ore_tin.ttip=Semi-pure tin core.
 tile.ore_tin.desc=Similarly common to iron, but deeper in the ground.
 
+## ----- MISC
+# Worktable
+tile.worktable.name=Worktable
+tile.worktable.ttip=<Technical Block>
+
 
 ### ============== ITEMS
 ## ----- INGOTS
@@ -37,3 +42,9 @@ item.ingot_copper.desc=Malleable and easily melted down.\nShiny orange in appear
 item.ingot_tin.name=Tin Ingot
 item.ingot_tin.ttip=Lightweight, soft, and conductive.
 item.ingot_tin.desc=Not very stong, but its flexibility may prove useful.\nDull gray in appearance.
+
+## ----- MISC
+# Worktable
+item.worktable_item.name=Worktable
+item.worktable_item.ttip=A basic sturdy worktable.
+item.worktable_item.desc=Not all the necessary tools, but should suffice for basic research and crystal etching.\nRequires three blocks of space.
