@@ -14,7 +14,7 @@ import java.util.function.Function;
  */
 public abstract class AbstractRegister<K, V> {
 
-  private Map<K, V> register = new HashMap<>();
+  protected Map<K, V> register = new HashMap<>();
 
   /**
    * Registers the given {@link V} value to the given {@link K} key.

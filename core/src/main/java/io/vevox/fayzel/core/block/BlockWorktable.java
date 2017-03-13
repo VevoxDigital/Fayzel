@@ -2,6 +2,9 @@ package io.vevox.fayzel.core.block;
 
 import io.vevox.fayzel.core.FayzelCore;
 import io.vevox.fayzel.core.api.FayzelBlockImpl;
+import io.vevox.fayzel.core.api.FayzelGuiHandler;
+import io.vevox.fayzel.core.api.IFayzelTileEntityProvider;
+import io.vevox.fayzel.core.tileentity.TileEntityWorktable;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockHorizontal;
 import net.minecraft.block.SoundType;
@@ -15,7 +18,9 @@ import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.Items;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
+import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.EnumFacing;
+import net.minecraft.util.EnumHand;
 import net.minecraft.util.IStringSerializable;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.math.BlockPos;
@@ -24,14 +29,27 @@ import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
 
 import javax.annotation.Nonnull;
+import javax.annotation.Nullable;
 import java.util.Random;
 
 /**
  * @author Matthew Struble
  */
-public class BlockWorktable extends FayzelBlockImpl {
+public class BlockWorktable extends FayzelBlockImpl implements IFayzelTileEntityProvider {
 
   public static final PropertyEnum<TablePart> PROPERTY_PART = PropertyEnum.create("part", TablePart.class);
+
+  @Override
+  public Class<? extends TileEntity> tileClass() {
+    return TileEntityWorktable.class;
+  }
+
+  @Nullable
+  @Override
+  public TileEntity createNewTileEntity(@Nonnull World worldIn, int meta) {
+    IBlockState state = getStateFromMeta(meta);
+    return state.getValue(PROPERTY_PART) == TablePart.CENTER ? new TileEntityWorktable() : null;
+  }
 
   public enum TablePart implements IStringSerializable {
     LEFT,
@@ -155,5 +173,23 @@ public class BlockWorktable extends FayzelBlockImpl {
   @Override
   protected BlockStateContainer createBlockState() {
     return new BlockStateContainer(this, BlockHorizontal.FACING, PROPERTY_PART);
+  }
+
+
+
+  @Override
+  public boolean onBlockActivated(World worldIn, BlockPos pos, IBlockState state,
+                                  EntityPlayer playerIn, EnumHand hand, EnumFacing facing,
+                                  float hitX, float hitY, float hitZ) {
+    pos = getCenterPart(worldIn, pos);
+    TileEntityWorktable tile = worldIn.getTileEntity(pos) instanceof TileEntityWorktable
+        ? (TileEntityWorktable) worldIn.getTileEntity(pos)
+        : null;
+
+    if (tile == null) return false;
+    if (tile.isLocked()) return true;
+    if (!worldIn.isRemote)
+      playerIn.openGui(FayzelCore.instance(), FayzelGuiHandler.Guis.WORKTABLE.ordinal(), worldIn, pos.getX(), pos.getY(), pos.getZ());
+    return true;
   }
 }

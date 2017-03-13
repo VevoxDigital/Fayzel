@@ -8,6 +8,7 @@ import net.minecraftforge.client.model.ModelLoader;
 import net.minecraftforge.fml.common.event.FMLInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLPostInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
+import net.minecraftforge.fml.common.network.NetworkRegistry;
 import net.minecraftforge.fml.common.registry.GameRegistry;
 import net.minecraftforge.oredict.OreDictionary;
 import org.apache.logging.log4j.Logger;
@@ -31,6 +32,8 @@ public class CommonProxy {
 
   public void init(FMLInitializationEvent e) {
     logger.info("!! Common Init start  !!");
+
+    NetworkRegistry.INSTANCE.registerGuiHandler(FayzelCore.instance(), new FayzelGuiHandler());
 
     logger.info("Registering generators...");
     GameRegistry.registerWorldGenerator(FayzelCore.ores(), 5);

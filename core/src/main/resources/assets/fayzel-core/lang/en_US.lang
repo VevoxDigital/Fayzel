@@ -1,7 +1,9 @@
 ### ============== INTERFACE
-## Creative Tabs
+## ----- Creative Tabs
 itemGroup.fayzel.core=Fayzel
 
+## ----- Containers
+container.worktable=Worktable
 
 ### ============== BLOCKS
 ## ----- ORE
