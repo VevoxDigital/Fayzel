@@ -13,5 +13,6 @@ build/
 run/
 
 # Asset Project Files
+*.ai
 *.bdc3D
 *.psd
