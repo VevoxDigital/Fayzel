@@ -1,0 +1,16 @@
+[
+  {
+    "modid": "${modid}",
+    "name": "${name}",
+    "description": "${desc}",
+    "version": "${version}",
+    "mcversion": "${mcversion}",
+    "url": "http://wiki.vevox.io/projects/fayzel",
+    "updateUrl": "",
+    "authorList": ["CynicalBusiness <matt@vevox.io>"],
+    "credits": "",
+    "logoFile": "assets/fayzel/logo-01.png",
+    "screenshots": [ ],
+    "dependencies": [ ]
+  }
+]
